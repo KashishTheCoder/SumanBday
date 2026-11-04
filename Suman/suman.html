@@ -1,0 +1,2552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Suman! 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --primary-pink: #ff6b8b;
+      --deep-pink: #e0446e;
+      --soft-pink: #fff0f5;
+      --text-dark: #4a3b40;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Fredoka', cursive, sans-serif;
+      padding: 15px;
+      overflow: hidden;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      max-width: 680px;
+      min-height: 530px;
+      height: 530px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.7);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      padding: 24px 20px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 0.4s ease forwards;
+      z-index: 1;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Standard Standing Penguin Mascot */
+    .penguin {
+      width: 130px;
+      height: 150px;
+      position: relative;
+      margin: 10px auto;
+      transition: all 0.3s ease;
+    }
+
+    .penguin-body {
+      width: 110px;
+      height: 130px;
+      background: #7bb5e8;
+      border-radius: 55px 55px 45px 45px;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      box-shadow: inset -4px -4px 0 rgba(0,0,0,0.06);
+    }
+
+    .penguin-belly {
+      width: 80px;
+      height: 95px;
+      background: #ffffff;
+      border-radius: 40px 40px 35px 35px;
+      position: absolute;
+      left: 25px;
+      top: 35px;
+    }
+
+    .penguin-eye {
+      width: 10px;
+      height: 13px;
+      background: #2b2b2b;
+      border-radius: 50%;
+      position: absolute;
+      top: 42px;
+    }
+    .penguin-eye.left { left: 40px; }
+    .penguin-eye.right { right: 40px; }
+    .penguin-eye::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+    }
+
+    .penguin-blush {
+      position: absolute;
+      top: 53px;
+      font-size: 14px;
+    }
+    .penguin-blush.left { left: 30px; }
+    .penguin-blush.right { right: 30px; }
+
+    .penguin-beak {
+      width: 16px;
+      height: 10px;
+      background: #ffa834;
+      border-radius: 0 0 10px 10px;
+      position: absolute;
+      left: 57px;
+      top: 52px;
+    }
+
+    .penguin-wing {
+      width: 28px;
+      height: 55px;
+      background: #6aa7dc;
+      border-radius: 14px;
+      position: absolute;
+      top: 45px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .penguin-wing.left { left: 0px; transform: rotate(18deg); }
+    .penguin-wing.right { right: 0px; transform: rotate(-18deg); }
+
+    .penguin-feet {
+      position: absolute;
+      bottom: 2px;
+      width: 24px;
+      height: 12px;
+      background: #ffa834;
+      border-radius: 12px 12px 0 0;
+    }
+    .penguin-feet.left { left: 35px; }
+    .penguin-feet.right { right: 35px; }
+
+    /* Birthday Celebration Mode on Mascot */
+    .penguin.celebrating {
+      animation: happyPartyBounce 0.35s infinite alternate ease-in-out;
+    }
+
+    @keyframes happyPartyBounce {
+      0% { transform: translateY(0) rotate(-2deg); }
+      100% { transform: translateY(-14px) rotate(2deg); }
+    }
+
+    .penguin.celebrating .penguin-wing.left {
+      transform: rotate(65deg) !important;
+      top: 30px !important;
+      left: -8px !important;
+    }
+
+    .penguin.celebrating .penguin-wing.right {
+      transform: rotate(-65deg) !important;
+      top: 30px !important;
+      right: -8px !important;
+    }
+
+    /* Typewriter Messaging Elements */
+    .typewriter-dialogue-box {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      padding: 0 15px;
+    }
+
+    .dynamic-type-text {
+      font-family: 'Caveat', cursive;
+      font-size: 32px;
+      font-weight: 700;
+      color: #e0446e;
+      line-height: 1.3;
+      text-shadow: 0 0 10px rgba(224, 68, 110, 0.2);
+    }
+
+    .highlight-date {
+      color: #ff3366;
+      background: rgba(255, 107, 139, 0.15);
+      padding: 0 6px;
+      border-radius: 8px;
+    }
+
+    .type-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 28px;
+      background: #e0446e;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 0.75s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Happy Penguin (Post-Yes Screen) */
+    .happy-penguin {
+      animation: happyBounce 0.4s infinite alternate ease-in-out;
+    }
+
+    @keyframes happyBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    .happy-wings-up-left {
+      transform: rotate(60deg) !important;
+      top: 35px !important;
+      left: -8px !important;
+    }
+
+    .happy-wings-up-right {
+      transform: rotate(-60deg) !important;
+      top: 35px !important;
+      right: -8px !important;
+    }
+
+    .emotional-sparkle-eye {
+      width: 14px !important;
+      height: 16px !important;
+      background: #1e272e !important;
+      border-radius: 50% !important;
+      position: absolute !important;
+      top: 40px !important;
+    }
+    .emotional-sparkle-eye.left { left: 38px !important; }
+    .emotional-sparkle-eye.right { right: 38px !important; }
+    
+    .emotional-sparkle-eye::before {
+      content: '✨';
+      position: absolute;
+      font-size: 8px;
+      top: -1px;
+      left: 1px;
+    }
+
+    .next-corner-btn {
+      position: absolute;
+      bottom: 22px;
+      right: 25px;
+      background: linear-gradient(135deg, #ff6b8b, #ff8e53);
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-family: 'Fredoka', cursive;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(255, 107, 139, 0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .next-corner-btn.show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: bounceNext 1.2s infinite;
+    }
+
+    @keyframes bounceNext {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+
+    /* Standing Crying Screen Elements */
+    .standing-crying-stage {
+      position: relative;
+      width: 380px;
+      height: 165px;
+      margin: 6px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .standing-crying-penguin {
+      position: relative;
+      width: 130px;
+      height: 150px;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .standing-crying-penguin.crying-active {
+      animation: gentleShiver 0.16s infinite alternate ease-in-out;
+    }
+
+    @keyframes gentleShiver {
+      0% { transform: translateY(0) scaleY(1); }
+      100% { transform: translateY(-3px) scaleY(0.97); }
+    }
+
+    .crying-eye-symbol {
+      position: absolute;
+      top: 40px;
+      font-weight: 900;
+      font-size: 22px;
+      color: #1e3799;
+      display: none;
+    }
+    .crying-eye-symbol.left { left: 36px; }
+    .crying-eye-symbol.right { right: 36px; }
+
+    .crying-beak-open {
+      position: absolute;
+      width: 16px;
+      height: 12px;
+      background: #ffa834;
+      border-radius: 8px 8px 12px 12px;
+      left: 57px;
+      top: 52px;
+      box-shadow: inset 0 2px 0 #e67e22;
+      display: none;
+    }
+
+    .standing-tear-svg {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 380px;
+      height: 150px;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .standing-stream-path {
+      fill: none;
+      stroke: #5dade2;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-dasharray: 20, 10;
+      animation: tearFlowStanding 0.3s linear infinite;
+    }
+
+    .standing-stream-core {
+      fill: none;
+      stroke: #ebf5fb;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 12, 8;
+      animation: tearFlowStanding 0.3s linear infinite;
+    }
+
+    @keyframes tearFlowStanding {
+      0% { stroke-dashoffset: 60; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .standing-puddle {
+      position: absolute;
+      bottom: 2px;
+      width: 280px;
+      height: 18px;
+      background: #aed6f1;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: puddlePulse 0.8s infinite alternate ease-in-out;
+    }
+
+    @keyframes puddlePulse {
+      0% { transform: scaleX(0.95); }
+      100% { transform: scaleX(1.1); }
+    }
+
+    .splash-drop {
+      position: absolute;
+      bottom: 8px;
+      font-size: 18px;
+      color: #3498db;
+      opacity: 0;
+      animation: splashHop 0.25s infinite alternate;
+    }
+    .splash-drop.left { left: 40px; }
+    .splash-drop.right { right: 40px; }
+
+    @keyframes splashHop {
+      0% { transform: translateY(0) scale(0.9); }
+      100% { transform: translateY(-8px) scale(1.15); }
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      margin-top: 15px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+
+    .btn-group.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Fredoka', cursive;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #ff6b8b, #ff8e53);
+      color: white;
+    }
+
+    .btn-no {
+      background: #ffffff;
+      color: #ff5f81;
+      border: 2px solid #ffccd7;
+    }
+
+    .btn-blow {
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      color: white;
+      padding: 11px 28px;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(255, 117, 140, 0.4);
+      margin-top: 15px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+
+    .btn-blow.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .title-text {
+      color: #e0446e;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .sub-text {
+      color: #8c6070;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Screen 2: Flying Plane */
+    .flight-zone {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .flight-container {
+      position: relative;
+      animation: glidePath 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glidePath {
+      0% { transform: translateY(10px) rotate(-3deg); }
+      100% { transform: translateY(-15px) rotate(4deg); }
+    }
+
+    .paper-plane {
+      width: 170px;
+      height: 80px;
+    }
+
+    .rider-penguin {
+      position: absolute;
+      top: -45px;
+      left: 45px;
+      width: 65px;
+      height: 75px;
+    }
+
+    .rider-body {
+      width: 55px;
+      height: 65px;
+      background: #7bb5e8;
+      border-radius: 30px 30px 22px 22px;
+      position: absolute;
+    }
+
+    .rider-belly {
+      width: 38px;
+      height: 48px;
+      background: #fff;
+      border-radius: 20px 20px 18px 18px;
+      position: absolute;
+      left: 9px;
+      top: 14px;
+    }
+
+    .rider-eye {
+      width: 6px;
+      height: 8px;
+      background: #2b2b2b;
+      border-radius: 50%;
+      position: absolute;
+      top: 18px;
+    }
+    .rider-eye.left { left: 18px; }
+    .rider-eye.right { right: 18px; }
+
+    .rider-beak {
+      width: 10px;
+      height: 7px;
+      background: #ffa834;
+      border-radius: 0 0 7px 7px;
+      position: absolute;
+      left: 23px;
+      top: 24px;
+    }
+
+    .held-heart {
+      position: absolute;
+      right: -10px;
+      top: 15px;
+      font-size: 20px;
+    }
+
+    /* ANIMATED MOVIE-STYLE 3D CHOCOLATE CAKE */
+    .movie-cake-wrapper {
+      position: relative;
+      width: 320px;
+      height: 220px;
+      margin: 0 auto;
+      display: none;
+      animation: popInMovieCake 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      filter: drop-shadow(0 18px 32px rgba(35, 14, 8, 0.48));
+    }
+
+    @keyframes popInMovieCake {
+      0% { transform: scale(0.4) translateY(40px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* COZY MIDNIGHT AMBIENT SHADOW */
+    .rising-shadow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center 60%, rgba(35, 18, 43, 0.96) 0%, rgba(15, 7, 20, 0.98) 70%, #0a040d 100%);
+      backdrop-filter: blur(14px);
+      z-index: 10;
+      opacity: 0;
+      transform: scale(0.92);
+      pointer-events: none;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.34, 1.2, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .rising-shadow.cover {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .rising-shadow.vanish {
+      opacity: 0 !important;
+      transform: scale(1.05) !important;
+      pointer-events: none !important;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Candles Stage */
+    .candle-scene {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      height: 140px;
+      width: 440px;
+    }
+
+    .candles-row {
+      display: flex;
+      gap: 28px;
+      z-index: 2;
+      margin-left: 50px;
+    }
+
+    .candle-unit {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wick {
+      width: 2px;
+      height: 10px;
+      background: #555;
+      margin-bottom: 2px;
+    }
+
+    .candle-stick {
+      width: 14px;
+      height: 54px;
+      background: repeating-linear-gradient(45deg, #ff8da1, #ff8da1 6px, #ffffff 6px, #ffffff 12px);
+      border-radius: 6px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    }
+
+    .candle-flame {
+      position: absolute;
+      top: -18px;
+      width: 15px;
+      height: 24px;
+      background: radial-gradient(ellipse at bottom, #fff9a6 0%, #ff9f43 50%, #ee5253 90%);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 16px #ffbe76, 0 0 35px #ff5252;
+      opacity: 0;
+      transform: scale(0.3);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .candle-flame.lit {
+      opacity: 1;
+      transform: scale(1);
+      animation: flicker 0.15s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-2deg); }
+      100% { transform: scale(1.08) rotate(2deg); }
+    }
+
+    /* REALISTIC MULTI-LAYER WISPY CANDLE SMOKE */
+    .realistic-smoke-container {
+      position: absolute;
+      top: -45px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 65px;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 20;
+    }
+
+    .realistic-smoke-container.active {
+      animation: smokeRiseFade 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes smokeRiseFade {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(12px) scale(0.4);
+      }
+      20% {
+        opacity: 0.85;
+      }
+      60% {
+        opacity: 0.55;
+        transform: translateX(calc(-50% + 8px)) translateY(-25px) scale(1.3);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(calc(-50% - 12px)) translateY(-65px) scale(2.1);
+      }
+    }
+
+    .smoke-wisp {
+      fill: none;
+      stroke: rgba(230, 235, 240, 0.8);
+      stroke-width: 3;
+      stroke-linecap: round;
+      filter: blur(1.2px);
+    }
+
+    /* MATCHBOX SVG */
+    .matchbox-svg-container {
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      width: 90px;
+      height: 120px;
+      z-index: 6;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
+    }
+
+    .hero-matchstick-wrapper {
+      position: absolute;
+      left: 35px;
+      top: 25px;
+      width: 8px;
+      height: 70px;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: bottom center;
+    }
+
+    .hero-stick-body {
+      width: 5px;
+      height: 58px;
+      background: linear-gradient(to right, #f6e58d, #f9ca24);
+      border: 1.5px solid #4a2810;
+      border-radius: 1px;
+      margin: 0 auto;
+    }
+
+    .hero-stick-head {
+      width: 12px;
+      height: 14px;
+      background: radial-gradient(circle at 35% 35%, #8b1e2f 0%, #530d17 100%);
+      border: 1.5px solid #33050a;
+      border-radius: 50% 50% 40% 40%;
+      margin: 0 auto -2px;
+      position: relative;
+    }
+
+    .hero-stick-head::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      width: 3px;
+      height: 4px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+    }
+
+    .hero-flame {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 18px;
+      height: 28px;
+      background: radial-gradient(ellipse at bottom, #fff9a6 0%, #ff9f43 55%, #ee5253 90%);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 16px rgba(255, 190, 118, 0.8), 0 0 30px rgba(255, 118, 117, 0.4);
+      opacity: 0;
+      transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    .hero-flame.ignited {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      animation: flicker 0.12s infinite alternate;
+    }
+
+    .friction-spark-particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 4px #ffd32a;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .friction-spark-particle.burst {
+      animation: sparkFly 0.45s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    }
+
+    @keyframes sparkFly {
+      0% { opacity: 1; transform: translate(0, 0) scale(1.4); }
+      100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.2); }
+    }
+
+    @keyframes pullStrikeAndLight {
+      0% { opacity: 0; left: 35px; top: 25px; transform: rotate(0deg); }
+      10% { opacity: 1; left: 35px; top: -10px; transform: rotate(-10deg); }
+      22% { left: 92px; top: 30px; transform: rotate(25deg); }
+      28% { left: 95px; top: 80px; transform: rotate(20deg); }
+      36% { left: 120px; top: 15px; transform: rotate(-25deg); }
+      48% { left: 175px; top: 20px; transform: rotate(-25deg); }
+      62% { left: 235px; top: 20px; transform: rotate(-25deg); }
+      76% { left: 295px; top: 20px; transform: rotate(-25deg); }
+      90% { left: 355px; top: 20px; transform: rotate(-25deg); }
+      96% { left: 390px; top: 10px; opacity: 1; }
+      100% { left: 410px; top: -30px; opacity: 0; }
+    }
+
+    /* SCREEN 4: CENTERED ENVELOPE & BOTTOM RESTING GIFTS */
+    .envelope-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 900px;
+    }
+
+    .hub-header-wrapper {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .envelope-interactive {
+      position: relative;
+      width: 250px;
+      height: 155px;
+      background: #f43f5e;
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(244, 63, 94, 0.32);
+      cursor: pointer;
+      margin-top: 15px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 5;
+    }
+
+    .envelope-interactive:hover {
+      transform: scale(1.05);
+    }
+
+    .envelope-interactive.opened {
+      transform: translateY(-10px) scale(0.92);
+      cursor: default;
+    }
+
+    .envelope-pocket-back {
+      position: absolute;
+      inset: 0;
+      background: #e11d48;
+      border-radius: 14px;
+      z-index: 1;
+    }
+
+    .envelope-flap-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 125px solid transparent;
+      border-right: 125px solid transparent;
+      border-top: 92px solid #fb7185;
+      transform-origin: top center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s;
+      z-index: 4;
+    }
+
+    .envelope-interactive.opened .envelope-flap-top {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope-seal-heart {
+      position: absolute;
+      top: 66px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 26px;
+      z-index: 5;
+      transition: opacity 0.3s ease;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .envelope-interactive.opened .envelope-seal-heart {
+      opacity: 0;
+    }
+
+    .envelope-pocket-front {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 125px solid #f43f5e;
+      border-right: 125px solid #f43f5e;
+      border-bottom: 82px solid #e11d48;
+      border-top: 72px solid transparent;
+      border-radius: 0 0 14px 14px;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* 4 GIFTS POPPING & RESTING AT THE VERY BOTTOM ROW */
+    .gifts-pop-layer {
+      position: absolute;
+      top: 44%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      z-index: 8;
+      pointer-events: none;
+    }
+
+    .envelope-interactive.opened ~ .gifts-pop-layer {
+      pointer-events: auto;
+    }
+
+    .gift-emoji-btn {
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 0 0 2px rgba(255, 182, 193, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s;
+    }
+
+    .gift-emoji-btn:hover {
+      box-shadow: 0 10px 22px rgba(244, 63, 94, 0.35), 0 0 0 3px #ff6b8b;
+    }
+
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-1:hover {
+      transform: translate(calc(-50% - 135px), calc(-50% + 140px)) scale(1.08) !important;
+    }
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-2:hover {
+      transform: translate(calc(-50% - 45px), calc(-50% + 140px)) scale(1.08) !important;
+    }
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-3:hover {
+      transform: translate(calc(-50% + 45px), calc(-50% + 140px)) scale(1.08) !important;
+    }
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-4:hover {
+      transform: translate(calc(-50% + 135px), calc(-50% + 140px)) scale(1.08) !important;
+    }
+
+    .gift-emoji-symbol {
+      font-size: 30px;
+      line-height: 1;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.15));
+      animation: emojiPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes emojiPulse {
+      0% { transform: scale(0.96); }
+      100% { transform: scale(1.04); }
+    }
+
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-1 {
+      animation: popToBottom1 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-2 {
+      animation: popToBottom2 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-3 {
+      animation: popToBottom3 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .envelope-interactive.opened ~ .gifts-pop-layer .gift-4 {
+      animation: popToBottom4 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes popToBottom1 {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+      35% { opacity: 1; transform: translate(calc(-50% - 90px), calc(-50% - 130px)) scale(1.3) rotate(-25deg); }
+      70% { transform: translate(calc(-50% - 135px), calc(-50% + 145px)) scale(0.92) rotate(6deg); }
+      100% { opacity: 1; transform: translate(calc(-50% - 135px), calc(-50% + 140px)) scale(1) rotate(0deg); }
+    }
+
+    @keyframes popToBottom2 {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+      35% { opacity: 1; transform: translate(calc(-50% - 30px), calc(-50% - 155px)) scale(1.35) rotate(18deg); }
+      70% { transform: translate(calc(-50% - 45px), calc(-50% + 145px)) scale(0.92) rotate(-5deg); }
+      100% { opacity: 1; transform: translate(calc(-50% - 45px), calc(-50% + 140px)) scale(1) rotate(0deg); }
+    }
+
+    @keyframes popToBottom3 {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+      35% { opacity: 1; transform: translate(calc(-50% + 40px), calc(-50% - 145px)) scale(1.3) rotate(-18deg); }
+      70% { transform: translate(calc(-50% + 45px), calc(-50% + 145px)) scale(0.92) rotate(4deg); }
+      100% { opacity: 1; transform: translate(calc(-50% + 45px), calc(-50% + 140px)) scale(1) rotate(0deg); }
+    }
+
+    @keyframes popToBottom4 {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+      35% { opacity: 1; transform: translate(calc(-50% + 100px), calc(-50% - 125px)) scale(1.35) rotate(22deg); }
+      70% { transform: translate(calc(-50% + 135px), calc(-50% + 145px)) scale(0.92) rotate(-6deg); }
+      100% { opacity: 1; transform: translate(calc(-50% + 135px), calc(-50% + 140px)) scale(1) rotate(0deg); }
+    }
+
+    /* Post-Gifts Question Footer */
+    .gifts-footer-box {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 10;
+    }
+
+    .gifts-footer-box.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Popups / Dedicated Pages for Surprises */
+    .popup-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 240, 245, 0.98);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 30;
+      animation: fadeIn 0.3s ease;
+      overflow: hidden;
+    }
+
+    .popup-modal.active {
+      display: flex;
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: #ff5277;
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 40;
+    }
+
+    .petal {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 150% 0 150% 0;
+      box-shadow: 0 0 5px rgba(0,0,0,0.08);
+      pointer-events: none;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(450px) rotate(360deg); opacity: 0; }
+    }
+
+    .flower-photos-wrapper {
+      display: flex;
+      gap: 22px;
+      justify-content: center;
+      align-items: center;
+      margin: 14px 0 8px;
+      perspective: 800px;
+    }
+
+    .taped-polaroid {
+      position: relative;
+      background: #ffffff;
+      padding: 12px 12px 20px 12px;
+      border-radius: 6px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: translateY(40px) scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    .taped-polaroid.float-in {
+      animation: floatUpPolaroid 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+    }
+
+    @keyframes floatUpPolaroid {
+      0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .taped-polaroid:hover {
+      transform: scale(1.08) rotate(0deg) !important;
+      z-index: 10;
+    }
+
+    .taped-polaroid img {
+      width: 190px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      border: 1px solid #f1e4eb;
+    }
+
+    .washi-tape {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 78px;
+      height: 22px;
+      background: rgba(255, 222, 230, 0.82);
+      border: 1px dashed rgba(224, 68, 110, 0.45);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(2px);
+      z-index: 5;
+    }
+
+    .washi-tape::before,
+    .washi-tape::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: inherit;
+    }
+    .washi-tape::before { left: -3px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+    .washi-tape::after { right: -3px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+    .twinning-carousel-container,
+    .cute-carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 8px 0 10px;
+    }
+
+    .twin-slide-card,
+    .cute-slide-card {
+      display: none;
+      position: relative;
+      margin: 0 16px;
+    }
+
+    .twin-slide-card.active,
+    .cute-slide-card.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: floatUpPolaroid 0.5s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+    }
+
+    .carousel-nav-btn {
+      background: #ff6b8b;
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(255,107,139,0.3);
+      transition: transform 0.2s;
+      z-index: 10;
+    }
+    .carousel-nav-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .adaptive-photo-stage {
+      position: relative;
+      width: 290px;
+      height: 270px;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 20px;
+      box-shadow: 0 16px 36px rgba(224, 68, 110, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: gentleFloat 3.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleFloat {
+      0% { transform: translateY(0px) rotate(-1deg); }
+      100% { transform: translateY(-7px) rotate(1deg); }
+    }
+
+    .adaptive-inner-mat {
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fff7fa 0%, #fdf0f4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid #fce3ec;
+    }
+
+    .adaptive-fit-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .frame-badge {
+      position: absolute;
+      font-size: 26px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+      animation: pulseBadge 1.8s ease-in-out infinite alternate;
+      z-index: 5;
+    }
+    .badge-tl { top: -14px; left: -14px; }
+    .badge-tr { top: -14px; right: -14px; }
+    .badge-br { bottom: -10px; right: -10px; }
+    .badge-bl { bottom: -10px; left: -10px; }
+
+    @keyframes pulseBadge {
+      0% { transform: scale(0.92) rotate(-6deg); }
+      100% { transform: scale(1.18) rotate(8deg); }
+    }
+
+    .ambient-floater {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.65;
+      animation: floatOrbit linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes floatOrbit {
+      0% { transform: translateY(0px) rotate(0deg) scale(0.8); opacity: 0.3; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-70px) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    .letter-paper {
+      background: #fffdf7;
+      border: 1px solid #fae1c3;
+      border-radius: 14px;
+      padding: 20px;
+      max-width: 520px;
+      max-height: 400px;
+      overflow-y: auto;
+      text-align: left;
+      font-family: 'Nunito', sans-serif;
+      color: #554449;
+      line-height: 1.5;
+      font-size: 13.5px;
+    }
+
+    .letter-paper h3 {
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      color: #e0446e;
+      margin-bottom: 6px;
+    }
+
+    .letter-paper p {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .letter-paper p.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper">
+
+    <div class="screen active" id="screen-intro">
+      <div class="penguin" id="intro-penguin">
+        <div class="penguin-body"></div>
+        <div class="penguin-belly"></div>
+        <div class="penguin-eye left"></div>
+        <div class="penguin-eye right"></div>
+        <div class="penguin-blush left">💖</div>
+        <div class="penguin-blush right">💖</div>
+        <div class="penguin-beak"></div>
+        <div class="penguin-wing left"></div>
+        <div class="penguin-wing right"></div>
+        <div class="penguin-feet left"></div>
+        <div class="penguin-feet right"></div>
+      </div>
+
+      <div class="typewriter-dialogue-box">
+        <span class="dynamic-type-text" id="intro-typewriter-text"></span>
+        <span class="type-cursor" id="intro-cursor"></span>
+      </div>
+
+      <div class="btn-group" id="intro-btn-group">
+        <button class="btn btn-yes" onclick="handleYesClick()">YES 🌸</button>
+        <button class="btn btn-no" onclick="handleNoClick()">NO 🙈</button>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-yes-happy">
+      <div class="penguin happy-penguin">
+        <div class="penguin-body"></div>
+        <div class="penguin-belly"></div>
+        <div class="emotional-sparkle-eye left"></div>
+        <div class="emotional-sparkle-eye right"></div>
+        <div class="penguin-blush left" style="font-size: 16px;">💖</div>
+        <div class="penguin-blush right" style="font-size: 16px;">💖</div>
+        <div class="penguin-beak" style="border-radius: 6px 6px 12px 12px; height: 12px;"></div>
+        <div class="penguin-wing left happy-wings-up-left"></div>
+        <div class="penguin-wing right happy-wings-up-right"></div>
+        <div class="penguin-feet left"></div>
+        <div class="penguin-feet right"></div>
+      </div>
+
+      <div class="typewriter-dialogue-box" style="min-height: 50px;">
+        <span class="dynamic-type-text" id="happy-typewriter-text"></span>
+        <span class="type-cursor" id="happy-cursor"></span>
+      </div>
+
+      <button class="next-corner-btn" id="happy-next-btn" onclick="goToScreen('screen-plane')">
+        Next &rarr;
+      </button>
+    </div>
+
+    <div class="screen" id="screen-reject">
+      <div class="standing-crying-stage">
+        <div class="standing-puddle" id="reject-puddle"></div>
+
+        <svg class="standing-tear-svg" id="reject-tears-svg" viewBox="0 0 380 150">
+          <path class="standing-stream-path" d="M 162,56 Q 105,-5 45,140" />
+          <path class="standing-stream-core" d="M 162,56 Q 105,-5 45,140" />
+          <path class="standing-stream-path" d="M 218,56 Q 275,-5 335,140" />
+          <path class="standing-stream-core" d="M 218,56 Q 275,-5 335,140" />
+        </svg>
+
+        <span class="splash-drop left" id="reject-splash-l">💧</span>
+        <span class="splash-drop right" id="reject-splash-r">💧</span>
+
+        <div class="standing-crying-penguin" id="reject-penguin">
+          <div class="penguin-body"></div>
+          <div class="penguin-belly"></div>
+          <div class="penguin-eye left" id="reject-normal-eye-l"></div>
+          <div class="penguin-eye right" id="reject-normal-eye-r"></div>
+          <div class="crying-eye-symbol left" id="reject-cry-eye-l">&gt;</div>
+          <div class="crying-eye-symbol right" id="reject-cry-eye-r">&lt;</div>
+          <div class="penguin-beak" id="reject-normal-beak"></div>
+          <div class="crying-beak-open" id="reject-cry-beak"></div>
+          <div class="penguin-wing left" id="reject-wing-l"></div>
+          <div class="penguin-wing right" id="reject-wing-r"></div>
+          <div class="penguin-feet left"></div>
+          <div class="penguin-feet right"></div>
+        </div>
+      </div>
+
+      <div class="typewriter-dialogue-box" style="min-height: 95px; flex-direction: column;">
+        <span class="dynamic-type-text" id="reject-typewriter-text" style="font-size: 21px; line-height: 1.35;"></span>
+      </div>
+
+      <button class="btn btn-yes" id="reject-retry-btn" style="opacity: 0; pointer-events: none; transition: all 0.3s ease; margin-top: 10px;" onclick="resetToLandingPage()">
+        TRY AGAIN 💖
+      </button>
+    </div>
+
+    <div class="screen" id="screen-plane">
+      <div class="flight-zone" onclick="goToScreen('screen-cake')">
+        <div class="flight-container">
+          <div class="rider-penguin">
+            <div class="rider-body"></div>
+            <div class="rider-belly"></div>
+            <div class="rider-eye left"></div>
+            <div class="rider-eye right"></div>
+            <div class="rider-beak"></div>
+            <div class="held-heart">❤️</div>
+          </div>
+
+          <svg class="paper-plane" viewBox="0 0 200 100">
+            <polygon points="10,40 180,15 110,85" fill="#f2f5f8" stroke="#cbd5e1" stroke-width="2"/>
+            <polygon points="180,15 50,45 10,40" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+            <polygon points="110,85 180,15 85,55" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="typewriter-dialogue-box" style="min-height: 50px; margin-top: 5px;">
+        <span class="dynamic-type-text" id="plane-typewriter-text" style="font-size: 32px;"></span>
+        <span class="type-cursor" id="plane-cursor"></span>
+      </div>
+      <p class="sub-text" style="margin-top: 6px; font-size: 13px; color: #b37d92;">(Click on the penguin 👆)</p>
+    </div>
+
+    <div class="screen" id="screen-cake">
+      <h2 class="title-text" style="font-size: 28px;">
+        <span id="cake-heading-type"></span>
+        <span class="type-cursor" id="cake-heading-cursor"></span>
+      </h2>
+      
+      <div class="movie-cake-wrapper" id="movie-cake">
+        <svg viewBox="0 0 320 220" width="100%" height="100%">
+          <defs>
+            <radialGradient id="plateTopGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="65%" stop-color="#fdf4e7" />
+              <stop offset="100%" stop-color="#dfbe98" />
+            </radialGradient>
+            
+            <linearGradient id="plateRimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#cca075" />
+              <stop offset="50%" stop-color="#fff2db" />
+              <stop offset="100%" stop-color="#b6885b" />
+            </linearGradient>
+
+            <linearGradient id="pedestalBase" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ab7a4d" />
+              <stop offset="50%" stop-color="#f3d7b7" />
+              <stop offset="100%" stop-color="#8a5a2e" />
+            </linearGradient>
+
+            <linearGradient id="chocBottomSide" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2a1208" />
+              <stop offset="25%" stop-color="#4e2515" />
+              <stop offset="65%" stop-color="#69331d" />
+              <stop offset="85%" stop-color="#482112" />
+              <stop offset="100%" stop-color="#220d04" />
+            </linearGradient>
+
+            <linearGradient id="chocTopSide" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#34160a" />
+              <stop offset="30%" stop-color="#5a2916" />
+              <stop offset="70%" stop-color="#73391f" />
+              <stop offset="90%" stop-color="#542613" />
+              <stop offset="100%" stop-color="#2b1005" />
+            </linearGradient>
+
+            <linearGradient id="ganacheGlaze" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#220a02" />
+              <stop offset="40%" stop-color="#140501" />
+              <stop offset="100%" stop-color="#090200" />
+            </linearGradient>
+
+            <filter id="piping3D" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2.5" stdDeviation="1.8" flood-color="#1a0701" flood-opacity="0.85" />
+            </filter>
+          </defs>
+
+          <ellipse cx="160" cy="206" rx="65" ry="10" fill="url(#pedestalBase)" stroke="#e4bd8e" stroke-width="1.5" />
+          <path d="M 144,188 L 138,204 Q 160,208 182,204 L 176,188 Z" fill="url(#pedestalBase)" />
+          <path d="M 18,178 Q 160,208 302,178 L 302,185 Q 160,215 18,185 Z" fill="url(#plateRimGrad)" />
+          <ellipse cx="160" cy="178" rx="142" ry="20" fill="url(#plateTopGrad)" stroke="#eed5b2" stroke-width="2" />
+
+          <path d="M 38,124 Q 160,162 282,124 L 282,166 Q 160,204 38,166 Z" fill="url(#chocBottomSide)" />
+          <ellipse cx="160" cy="124" rx="122" ry="26" fill="#3e1b0e" />
+          <path d="M 38,124 Q 68,148 95,130 Q 128,158 160,132 Q 192,160 225,128 Q 255,146 282,124 Q 160,154 38,124 Z" fill="url(#ganacheGlaze)" />
+
+          <path d="M 72,74 Q 160,106 248,74 L 248,114 Q 160,146 72,114 Z" fill="url(#chocTopSide)" />
+          <ellipse cx="160" cy="74" rx="88" ry="20" fill="#4d2314" />
+          <path d="M 72,74 Q 98,98 122,80 Q 150,104 175,82 Q 205,102 228,80 Q 240,90 248,74 Q 160,98 72,74 Z" fill="url(#ganacheGlaze)" />
+
+          <circle cx="86" cy="70" r="9" fill="#fff9eb" stroke="#f3dec3" stroke-width="1.2" />
+          <circle cx="118" cy="63" r="9" fill="#fff9eb" stroke="#f3dec3" stroke-width="1.2" />
+          <circle cx="160" cy="59" r="10" fill="#fff9eb" stroke="#f3dec3" stroke-width="1.2" />
+          <circle cx="202" cy="63" r="9" fill="#fff9eb" stroke="#f3dec3" stroke-width="1.2" />
+          <circle cx="234" cy="70" r="9" fill="#fff9eb" stroke="#f3dec3" stroke-width="1.2" />
+
+          <circle cx="102" cy="67" r="4.5" fill="#c0392b" />
+          <circle cx="140" cy="64" r="3.5" fill="#f1c40f" />
+          <circle cx="180" cy="64" r="3.5" fill="#ffffff" />
+          <circle cx="218" cy="67" r="4.5" fill="#c0392b" />
+
+          <g filter="url(#piping3D)">
+            <path id="cake-text-path" d="M 80,145 Q 160,165 240,145" fill="transparent" />
+            <text font-family="'Pacifico', 'Caveat', cursive" font-size="22" font-weight="700" fill="#fffdf7" letter-spacing="0.6">
+              <textPath href="#cake-text-path" startOffset="50%" text-anchor="middle">
+                <tspan id="cake-piping-text"></tspan>
+              </textPath>
+            </text>
+          </g>
+        </svg>
+      </div>
+
+      <div id="post-blow-box" style="display: none; margin-top: 4px; animation: fadeIn 0.5s ease;">
+        <div class="typewriter-dialogue-box" style="min-height: 38px; margin-top: 0px;">
+          <span class="dynamic-type-text" id="post-blow-subtitle" style="font-size: 24px; color: #8c6070;"></span>
+          <span class="type-cursor" id="post-blow-subtitle-cursor" style="background: #8c6070;"></span>
+        </div>
+
+        <div class="typewriter-dialogue-box" style="min-height: 32px; margin-top: -6px;">
+          <span class="dynamic-type-text" id="post-blow-prompt" style="font-size: 20px; color: #e0446e;"></span>
+          <span class="type-cursor" id="post-blow-prompt-cursor"></span>
+        </div>
+
+        <button class="btn btn-yes" id="ready-gifts-btn" style="margin-top: 4px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;" onclick="goToScreen('screen-hub')">
+          Yesss!! 🎁
+        </button>
+      </div>
+
+      <div class="rising-shadow" id="rising-shadow">
+        <div class="candle-scene">
+          
+          <div class="matchbox-svg-container" id="matchbox-svg">
+            <svg viewBox="0 0 160 220" width="100%" height="100%">
+              <polygon points="35,15 110,30 110,65 35,50" fill="#d4a737" stroke="#4a2810" stroke-width="3" />
+              <polygon points="35,15 110,30 110,40 35,25" fill="#b08522" />
+              <polygon points="110,30 125,25 125,55 110,65" fill="#e8bc4a" stroke="#4a2810" stroke-width="3" />
+
+              <rect x="48" y="32" width="5" height="20" fill="#f8e3a2" stroke="#4a2810" stroke-width="1.5" />
+              <ellipse cx="50.5" cy="30" rx="6" ry="8" fill="#751827" stroke="#38040d" stroke-width="1.5" />
+              <ellipse cx="49" cy="28" rx="1.5" ry="2.5" fill="#fff" opacity="0.6" />
+
+              <rect x="70" y="35" width="5" height="20" fill="#f8e3a2" stroke="#4a2810" stroke-width="1.5" />
+              <ellipse cx="72.5" cy="33" rx="6" ry="8" fill="#751827" stroke="#38040d" stroke-width="1.5" />
+              <ellipse cx="71" cy="31" rx="1.5" ry="2.5" fill="#fff" opacity="0.6" />
+
+              <rect x="90" y="38" width="5" height="20" fill="#f8e3a2" stroke="#4a2810" stroke-width="1.5" />
+              <ellipse cx="92.5" cy="36" rx="6" ry="8" fill="#751827" stroke="#38040d" stroke-width="1.5" />
+              <ellipse cx="91" cy="34" rx="1.5" ry="2.5" fill="#fff" opacity="0.6" />
+
+              <polygon points="30,55 112,70 112,190 30,175" fill="#81cfe0" stroke="#4a2810" stroke-width="3.5" />
+              <polygon points="36,63 106,76 106,182 36,169" fill="#9fe2f0" stroke="#ffffff" stroke-width="2.5" />
+
+              <path d="M 45,155 Q 52,90 85,78 Q 72,120 98,110 Q 102,150 85,170 Q 55,175 45,155 Z" fill="#ffd32a" stroke="#4a2810" stroke-width="2" />
+              <path d="M 55,158 Q 58,118 78,112 Q 72,138 90,132 Q 92,156 80,166 Q 60,170 55,158 Z" fill="#eb4d4b" stroke="#4a2810" stroke-width="1.5" />
+
+              <polygon points="112,70 128,62 128,178 112,190" fill="#6d214f" stroke="#4a2810" stroke-width="3" />
+              <polygon points="115,75 125,70 125,172 115,182" fill="#933b66" stroke="#ffffff" stroke-width="1" stroke-dasharray="2,2" />
+            </svg>
+          </div>
+
+          <div id="sparks-anchor" style="position: absolute; left: 95px; top: 60px; pointer-events: none; z-index: 15;"></div>
+
+          <div class="hero-matchstick-wrapper" id="hero-matchstick">
+            <div class="hero-stick-head"></div>
+            <div class="hero-flame" id="hero-flame"></div>
+            <div class="hero-stick-body"></div>
+          </div>
+
+          <div class="candles-row">
+            <div class="candle-unit">
+              <div class="candle-flame" id="flame-1"></div>
+              <div class="realistic-smoke-container" id="smoke-1">
+                <svg viewBox="0 0 40 70" width="100%" height="100%">
+                  <path class="smoke-wisp" d="M20,65 Q10,45 25,30 T15,5" />
+                  <path class="smoke-wisp" style="stroke-width:1.8; opacity:0.6;" d="M18,65 Q28,48 14,28 T22,8" />
+                </svg>
+              </div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="candle-unit">
+              <div class="candle-flame" id="flame-2"></div>
+              <div class="realistic-smoke-container" id="smoke-2">
+                <svg viewBox="0 0 40 70" width="100%" height="100%">
+                  <path class="smoke-wisp" d="M20,65 Q28,45 12,30 T24,5" />
+                  <path class="smoke-wisp" style="stroke-width:1.8; opacity:0.6;" d="M22,65 Q12,48 26,28 T16,8" />
+                </svg>
+              </div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="candle-unit">
+              <div class="candle-flame" id="flame-3"></div>
+              <div class="realistic-smoke-container" id="smoke-3">
+                <svg viewBox="0 0 40 70" width="100%" height="100%">
+                  <path class="smoke-wisp" d="M20,65 Q10,45 25,30 T15,5" />
+                  <path class="smoke-wisp" style="stroke-width:1.8; opacity:0.6;" d="M18,65 Q28,48 14,28 T22,8" />
+                </svg>
+              </div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+            <div class="candle-unit">
+              <div class="candle-flame" id="flame-4"></div>
+              <div class="realistic-smoke-container" id="smoke-4">
+                <svg viewBox="0 0 40 70" width="100%" height="100%">
+                  <path class="smoke-wisp" d="M20,65 Q28,45 12,30 T24,5" />
+                  <path class="smoke-wisp" style="stroke-width:1.8; opacity:0.6;" d="M22,65 Q12,48 26,28 T16,8" />
+                </svg>
+              </div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="dynamic-type-text" id="typewriter-msg" style="color: #ffeaa7;"></span>
+          <span class="type-cursor" id="typewriter-cursor" style="background: #ffeaa7;"></span>
+        </div>
+
+        <button class="btn btn-blow" id="blow-btn" onclick="blowOutCandles()">💨 Blow them</button>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-hub">
+      <div class="envelope-stage">
+        <div class="hub-header-wrapper">
+          <span class="dynamic-type-text" id="hub-header" style="font-size: 32px;"></span>
+          <span class="type-cursor" id="hub-header-cursor"></span>
+        </div>
+
+        <div class="envelope-interactive" id="surprise-envelope" onclick="openEnvelopeHub()">
+          <div class="envelope-pocket-back"></div>
+          <div class="envelope-flap-top"></div>
+          <div class="envelope-seal-heart">💖</div>
+          <div class="envelope-pocket-front"></div>
+        </div>
+
+        <div class="gifts-pop-layer">
+          <div class="gift-emoji-btn gift-1" onclick="openModal('modal-flowers')">
+            <span class="gift-emoji-symbol">🎁</span>
+          </div>
+          <div class="gift-emoji-btn gift-2" onclick="openModal('modal-twinning')">
+            <span class="gift-emoji-symbol">🎁</span>
+          </div>
+          <div class="gift-emoji-btn gift-3" onclick="openModal('modal-cute')">
+            <span class="gift-emoji-symbol">🎁</span>
+          </div>
+          <div class="gift-emoji-btn gift-4" onclick="openModal('modal-letter')">
+            <span class="gift-emoji-symbol">🎁</span>
+          </div>
+        </div>
+
+        <div class="gifts-footer-box" id="gifts-footer">
+          <span class="dynamic-type-text" style="font-size: 22px;">Saja gifts disi chadya?? 🤭</span>
+          <button class="btn btn-yes" onclick="goToScreen('screen-hug')">Yess!! 🤍</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen" id="screen-hug">
+      <h2 class="title-text" style="font-size: 26px; margin-bottom: 4px;">Sending U Virtual Hugs 🫂🤍</h2>
+      <div style="margin: 10px 0;">
+        <img src="hug.gif?autoplay=1&loop=1" alt="Virtual Hug" loop autoplay style="max-width: 240px; max-height: 220px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+      </div>
+      <h2 class="title-text" style="font-size: 24px; color: #8c6070; margin-top: 4px;">Love you & Miss you ✨</h2>
+    </div>
+
+    <div class="popup-modal" id="modal-flowers">
+      <button class="close-popup" onclick="closeModal('modal-flowers')">&times;</button>
+      <div id="petal-container"></div>
+      
+      <div class="typewriter-dialogue-box" style="min-height: 55px; max-width: 520px; margin-bottom: 2px;">
+        <span class="dynamic-type-text" id="flowers-top-text" style="font-size: 21px; line-height: 1.4;"></span>
+        <span class="type-cursor" id="flowers-top-cursor"></span>
+      </div>
+      
+      <div class="flower-photos-wrapper">
+        <div class="taped-polaroid" id="polaroid-1" style="transform: rotate(-3.5deg);">
+          <div class="washi-tape"></div>
+          <img src="flowers.jpg" alt="Flowers & Us" onerror="this.src='https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600&q=85'" />
+        </div>
+        
+        <div class="taped-polaroid" id="polaroid-2" style="transform: rotate(3.5deg);">
+          <div class="washi-tape"></div>
+          <img src="back.jpg" alt="Us Together" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=85'" />
+        </div>
+      </div>
+
+      <div class="typewriter-dialogue-box" style="min-height: 40px; margin-top: 4px;">
+        <span class="dynamic-type-text" id="flowers-bot-text" style="font-size: 16px; color: #8c6070;"></span>
+        <span class="type-cursor" id="flowers-bot-cursor" style="background: #8c6070;"></span>
+      </div>
+    </div>
+
+    <div class="popup-modal" id="modal-twinning">
+      <button class="close-popup" onclick="closeModal('modal-twinning')">&times;</button>
+      
+      <div class="typewriter-dialogue-box" style="min-height: 50px; max-width: 550px; margin-bottom: 2px;">
+        <span class="dynamic-type-text" id="twin-top-text" style="font-size: 19px; line-height: 1.35;"></span>
+        <span class="type-cursor" id="twin-top-cursor"></span>
+      </div>
+
+      <div class="twinning-carousel-container">
+        <button class="carousel-nav-btn" id="twin-prev-btn" style="opacity: 0; pointer-events: none;" onclick="prevTwinSlide()">&#10094;</button>
+
+        <div class="twin-slide-card active" id="twin-slide-0">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">💖</span>
+            <span class="frame-badge badge-tr">✨</span>
+            <span class="frame-badge badge-br">🌸</span>
+            <div class="adaptive-inner-mat">
+              <img src="twin1.jpg" class="adaptive-fit-img" alt="Twinning 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="twin-slide-card" id="twin-slide-1">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🌸</span>
+            <span class="frame-badge badge-tr">💕</span>
+            <span class="frame-badge badge-bl">✨</span>
+            <div class="adaptive-inner-mat">
+              <img src="twin2.jpg" class="adaptive-fit-img" alt="Twinning 2" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="twin-slide-card" id="twin-slide-2">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">⭐</span>
+            <span class="frame-badge badge-tr">🌟</span>
+            <span class="frame-badge badge-br">💫</span>
+            <div class="adaptive-inner-mat">
+              <img src="twin3.jpg" class="adaptive-fit-img" alt="Twinning 3" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="twin-slide-card" id="twin-slide-3">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🎀</span>
+            <span class="frame-badge badge-tr">🦋</span>
+            <span class="frame-badge badge-br">💖</span>
+            <div class="adaptive-inner-mat">
+              <img src="twin4.jpg" class="adaptive-fit-img" alt="Twinning 4" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="twin-slide-card" id="twin-slide-4">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">📸</span>
+            <span class="frame-badge badge-tr">✨</span>
+            <span class="frame-badge badge-br">🤍</span>
+            <div class="adaptive-inner-mat">
+              <img src="twin5.jpg" class="adaptive-fit-img" alt="Twinning 5" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="twin-slide-card" id="twin-slide-5">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🧸</span>
+            <span class="frame-badge badge-tr">💫</span>
+            <span class="frame-badge badge-bl">💖</span>
+            <div class="adaptive-inner-mat">
+              <img src="twin6.jpg" class="adaptive-fit-img" alt="Twinning 6" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-nav-btn" id="twin-next-btn" style="opacity: 0; pointer-events: none;" onclick="nextTwinSlide()">&#10095;</button>
+      </div>
+
+      <div class="typewriter-dialogue-box" style="min-height: 45px; max-width: 540px;">
+        <span class="dynamic-type-text" id="twin-bot-text" style="font-size: 14px; color: #7a5060; font-weight: 700;"></span>
+        <span class="type-cursor" id="twin-bot-cursor" style="background: #7a5060;"></span>
+      </div>
+    </div>
+
+    <div class="popup-modal" id="modal-cute">
+      <button class="close-popup" onclick="closeModal('modal-cute')">&times;</button>
+      
+      <span class="ambient-floater" style="top: 80%; left: 8%; font-size: 20px; animation-duration: 4.2s;">💖</span>
+      <span class="ambient-floater" style="top: 85%; right: 12%; font-size: 18px; animation-duration: 5s; animation-delay: 1.5s;">⭐</span>
+      <span class="ambient-floater" style="top: 75%; left: 85%; font-size: 22px; animation-duration: 4.8s; animation-delay: 0.8s;">✨</span>
+
+      <div class="typewriter-dialogue-box" style="min-height: 50px; max-width: 540px; margin-bottom: 2px;">
+        <span class="dynamic-type-text" id="cute-top-text" style="font-size: 19px; line-height: 1.35;"></span>
+        <span class="type-cursor" id="cute-top-cursor"></span>
+      </div>
+
+      <div class="cute-carousel-container">
+        <button class="carousel-nav-btn" id="cute-prev-btn" style="opacity: 0; pointer-events: none;" onclick="prevCuteSlide()">&#10094;</button>
+
+        <div class="cute-slide-card active" id="cute-slide-0">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🌹</span>
+            <span class="frame-badge badge-tr">💖</span>
+            <span class="frame-badge badge-br">✨</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute1.jpg" class="adaptive-fit-img" alt="Cute Memory 1" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-1">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🌈</span>
+            <span class="frame-badge badge-tr">✨</span>
+            <span class="frame-badge badge-bl">💕</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute2.jpg" class="adaptive-fit-img" alt="Cute Memory 2" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-2">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🌙</span>
+            <span class="frame-badge badge-tr">⭐</span>
+            <span class="frame-badge badge-br">✨</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute3.jpg" class="adaptive-fit-img" alt="Cute Memory 3" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-3">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🌸</span>
+            <span class="frame-badge badge-tr">🍃</span>
+            <span class="frame-badge badge-br">💖</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute4.jpg" class="adaptive-fit-img" alt="Cute Memory 4" onerror="this.src='https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-4">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🧚‍♀️</span>
+            <span class="frame-badge badge-tr">🪄</span>
+            <span class="frame-badge badge-bl">✨</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute5.jpg" class="adaptive-fit-img" alt="Cute Memory 5" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-5">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🍓</span>
+            <span class="frame-badge badge-tr">🍬</span>
+            <span class="frame-badge badge-br">💕</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute6.jpg" class="adaptive-fit-img" alt="Cute Memory 6" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-6">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🧸</span>
+            <span class="frame-badge badge-tr">💖</span>
+            <span class="frame-badge badge-br">🤍</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute7.jpg" class="adaptive-fit-img" alt="Cute Memory 7" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-7">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">💎</span>
+            <span class="frame-badge badge-tr">✨</span>
+            <span class="frame-badge badge-bl">💍</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute8.jpg" class="adaptive-fit-img" alt="Cute Memory 8" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-8">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🎵</span>
+            <span class="frame-badge badge-tr">🎶</span>
+            <span class="frame-badge badge-br">💕</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute9.jpg" class="adaptive-fit-img" alt="Cute Memory 9" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cute-slide-card" id="cute-slide-9">
+          <div class="adaptive-photo-stage">
+            <span class="frame-badge badge-tl">🌻</span>
+            <span class="frame-badge badge-tr">☀️</span>
+            <span class="frame-badge badge-br">💛</span>
+            <div class="adaptive-inner-mat">
+              <img src="cute10.jpg" class="adaptive-fit-img" alt="Cute Memory 10" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85'" />
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-nav-btn" id="cute-next-btn" style="opacity: 0; pointer-events: none;" onclick="nextCuteSlide()">&#10095;</button>
+      </div>
+
+      <div class="typewriter-dialogue-box" style="min-height: 45px; max-width: 530px;">
+        <span class="dynamic-type-text" id="cute-bot-text" style="font-size: 14.5px; color: #7a5060; font-weight: 700;"></span>
+        <span class="type-cursor" id="cute-bot-cursor" style="background: #7a5060;"></span>
+      </div>
+    </div>
+
+    <div class="popup-modal" id="modal-letter">
+      <button class="close-popup" onclick="closeModal('modal-letter')">&times;</button>
+      <div class="letter-paper">
+        <h3>
+          <span id="letter-title-text"></span>
+          <span class="type-cursor" id="letter-title-cursor" style="height: 20px;"></span>
+        </h3>
+        <p id="l-p1">First of all, Happy Birthday🎂🎉... Hope so k tokhe iho gift wanryo hundo.</p>
+        <p id="l-p2">You know video and all thain is not my type, so this time made something different.</p>
+        <p id="l-p3">Yes physically gift na dayi saghyam in dafa but next time jeko naseeb. 🫠</p>
+        <p id="l-p4">Bhagwan tokhe ghanyu saaryu khushyu de, sutho var sutho ghar de... Bs mukha sutho dost na de, na t mukhe bhuli Wendi n 🙂🫠....</p>
+        <p id="l-p5">Hin dafa hute nahya tuhinji birthday celebration laye pr virtually tuhinje laye ghanyu saaryu duayun 🤲🏻✨....</p>
+        <p id="l-p6">I do miss you many times and mukhe bh shayad tokha sutho dost kadi nahe milyo.</p>
+        <p id="l-p7">Tosa jhagra and dosti bayi ehra huya jeka kadi kehn sa na huya and na wari thinda...</p>
+        <p id="l-p8">So I am actually gonna keep you close to my heart all my life 🫂♥️.</p>
+        <p id="l-p9">Thank you yr, thank you for always being there, sachi me maa aahya grateful, shayad tu na huje aa t Anja bh maa wat koi sutho dost na huje aa.</p>
+        <p id="l-p10">Thank you muhinjo hamesha edo khayal rakhan laye muhinji care karan laye... 🫂♥️....</p>
+        <p id="l-p11">Love you 🫠🫂.... And once again... Happy Birthday Sain 🫠🎂✨🥳</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function typeWriterPromise(elementId, text, speed = 50) {
+      return new Promise(resolve => {
+        const el = document.getElementById(elementId);
+        let i = 0;
+        function type() {
+          if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          } else {
+            resolve();
+          }
+        }
+        type();
+      });
+    }
+
+    function eraseWriterPromise(elementId, speed = 25) {
+      return new Promise(resolve => {
+        const el = document.getElementById(elementId);
+        function erase() {
+          if (el.textContent.length > 0) {
+            el.textContent = el.textContent.substring(0, el.textContent.length - 1);
+            setTimeout(erase, speed);
+          } else {
+            resolve();
+          }
+        }
+        erase();
+      });
+    }
+
+    function goToScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(screenId);
+      if (target) target.classList.add('active');
+
+      if (screenId === 'screen-plane') {
+        runPlaneStory();
+      } else if (screenId === 'screen-cake') {
+        startCakeAndShadowRitual();
+      } else if (screenId === 'screen-hub') {
+        runHubStory();
+      }
+    }
+
+    /* 1. LANDING STORY */
+    async function runLandingStory() {
+      const penguin = document.getElementById('intro-penguin');
+      const textEl = document.getElementById('intro-typewriter-text');
+      const cursor = document.getElementById('intro-cursor');
+      const btnGroup = document.getElementById('intro-btn-group');
+
+      penguin.classList.remove('celebrating');
+      btnGroup.classList.remove('show');
+      textEl.innerHTML = '';
+      cursor.style.display = 'inline-block';
+
+      await sleep(600);
+
+      // New opening question sequence
+      await typeWriterPromise('intro-typewriter-text', "Do you know what date is it today? 🤔", 45);
+      await sleep(2000);
+      await eraseWriterPromise('intro-typewriter-text', 25);
+      await sleep(400);
+      
+      // Split sentence animation sequence
+      await typeWriterPromise('intro-typewriter-text', "Exactly", 55);
+      await sleep(1500);
+      await eraseWriterPromise('intro-typewriter-text', 25);
+      await sleep(400);
+
+      textEl.innerHTML = 'it\'s <span class="highlight-date">3rd of September</span>';
+      // Simulate quick typing for the highlighted middle part
+      await sleep(1200);
+      await eraseWriterPromise('intro-typewriter-text', 25);
+      await sleep(400);
+
+      await typeWriterPromise('intro-typewriter-text', "which means......", 50);
+      await sleep(1500);
+      await eraseWriterPromise('intro-typewriter-text', 25);
+      await sleep(400);
+
+      penguin.classList.add('celebrating');
+      confetti({ particleCount: 75, spread: 70, origin: { y: 0.6 } });
+      await typeWriterPromise('intro-typewriter-text', "It's your Birthday!!!! 🎉🎂✨", 45);
+      await sleep(2200);
+      await eraseWriterPromise('intro-typewriter-text', 20);
+
+      penguin.classList.remove('celebrating');
+      await sleep(400);
+      textEl.innerHTML = '';
+      await typeWriterPromise('intro-typewriter-text', "I made something special for u 💕 do u wanna see it?", 45);
+      cursor.style.display = 'none';
+      btnGroup.classList.add('show');
+    }
+
+    async function resetToLandingPage() {
+      goToScreen('screen-intro');
+      const penguin = document.getElementById('intro-penguin');
+      const textEl = document.getElementById('intro-typewriter-text');
+      const cursor = document.getElementById('intro-cursor');
+      const btnGroup = document.getElementById('intro-btn-group');
+
+      penguin.classList.remove('celebrating');
+      btnGroup.classList.remove('show');
+      textEl.innerHTML = '';
+      cursor.style.display = 'inline-block';
+
+      await sleep(300);
+      await typeWriterPromise('intro-typewriter-text', "I made something special for u 💕 do u wanna see it?", 45);
+      cursor.style.display = 'none';
+      btnGroup.classList.add('show');
+    }
+
+    window.addEventListener('DOMContentLoaded', runLandingStory);
+
+    /* 2. REJECT "NO" SEQUENCE */
+    async function handleNoClick() {
+      goToScreen('screen-reject');
+
+      const penguin = document.getElementById('reject-penguin');
+      const puddle = document.getElementById('reject-puddle');
+      const tearsSvg = document.getElementById('reject-tears-svg');
+      const splashL = document.getElementById('reject-splash-l');
+      const splashR = document.getElementById('reject-splash-r');
+      const normalEyeL = document.getElementById('reject-normal-eye-l');
+      const normalEyeR = document.getElementById('reject-normal-eye-r');
+      const cryEyeL = document.getElementById('reject-cry-eye-l');
+      const cryEyeR = document.getElementById('reject-cry-eye-r');
+      const normalBeak = document.getElementById('reject-normal-beak');
+      const cryBeak = document.getElementById('reject-cry-beak');
+      const wingL = document.getElementById('reject-wing-l');
+      const wingR = document.getElementById('reject-wing-r');
+      const textEl = document.getElementById('reject-typewriter-text');
+      const retryBtn = document.getElementById('reject-retry-btn');
+
+      penguin.classList.remove('crying-active');
+      puddle.style.opacity = '0';
+      tearsSvg.style.opacity = '0';
+      splashL.style.opacity = '0';
+      splashR.style.opacity = '0';
+      
+      normalEyeL.style.display = 'block';
+      normalEyeR.style.display = 'block';
+      cryEyeL.style.display = 'none';
+      cryEyeR.style.display = 'none';
+
+      normalBeak.style.display = 'block';
+      cryBeak.style.display = 'none';
+
+      wingL.style.transform = 'rotate(18deg)';
+      wingR.style.transform = 'rotate(-18deg)';
+      
+      textEl.textContent = '';
+      retryBtn.style.opacity = '0';
+      retryBtn.style.pointerEvents = 'none';
+
+      await sleep(1000);
+
+      penguin.classList.add('crying-active');
+      puddle.style.opacity = '0.85';
+      tearsSvg.style.opacity = '1';
+      splashL.style.opacity = '1';
+      splashR.style.opacity = '1';
+
+      normalEyeL.style.display = 'none';
+      normalEyeR.style.display = 'none';
+      cryEyeL.style.display = 'block';
+      cryEyeR.style.display = 'block';
+
+      normalBeak.style.display = 'none';
+      cryBeak.style.display = 'block';
+
+      wingL.style.transform = 'rotate(-10deg)';
+      wingR.style.transform = 'rotate(10deg)';
+
+      const line1 = "HUH SUMAN... you clicked NO?! 🥺💔\n";
+      const line2 = "You really forgot about our #Sumish bond?!\n";
+      const line3 = "Yaar maan edo pyaar sa thayo aa, hik dafa dis t sahi 😭😭🥺💔";
+
+      await typeWriterPromise('reject-typewriter-text', line1, 35);
+      await sleep(300);
+      await typeWriterPromise('reject-typewriter-text', line2, 35);
+      await sleep(300);
+      await typeWriterPromise('reject-typewriter-text', line3, 40);
+
+      await sleep(400);
+      retryBtn.style.opacity = '1';
+      retryBtn.style.pointerEvents = 'auto';
+    }
+
+    /* 3. ACCEPT "YES" SEQUENCE */
+    function handleYesClick() {
+      goToScreen('screen-yes-happy');
+      
+      const typeText = document.getElementById('happy-typewriter-text');
+      const cursor = document.getElementById('happy-cursor');
+      const nextBtn = document.getElementById('happy-next-btn');
+
+      typeText.textContent = '';
+      cursor.style.display = 'inline-block';
+      nextBtn.classList.remove('show');
+
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+
+      setTimeout(async () => {
+        await typeWriterPromise('happy-typewriter-text', "Huh, you really accepted it! I knew it... 🥺💖", 45);
+        cursor.style.display = 'none';
+        nextBtn.classList.add('show');
+      }, 400);
+    }
+
+    async function runPlaneStory() {
+      const textEl = document.getElementById('plane-typewriter-text');
+      const cursor = document.getElementById('plane-cursor');
+      textEl.textContent = '';
+      cursor.style.display = 'inline-block';
+
+      await sleep(300);
+      await typeWriterPromise('plane-typewriter-text', "A special surprise is coming your way...", 45);
+      cursor.style.display = 'none';
+    }
+
+    /* 4. CAKE & SHADOW CEREMONY */
+    function triggerRealisticSparks() {
+      const anchor = document.getElementById('sparks-anchor');
+      anchor.innerHTML = '';
+      for (let i = 0; i < 9; i++) {
+        const p = document.createElement('div');
+        p.className = 'friction-spark-particle burst';
+        const angle = (Math.random() * 120 + 210) * (Math.PI / 180);
+        const dist = Math.random() * 26 + 10;
+        p.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+        p.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+        anchor.appendChild(p);
+      }
+    }
+
+    async function startCakeAndShadowRitual() {
+      const shadow = document.getElementById('rising-shadow');
+      const matchbox = document.getElementById('matchbox-svg');
+      const heroStick = document.getElementById('hero-matchstick');
+      const heroFlame = document.getElementById('hero-flame');
+      const blowBtn = document.getElementById('blow-btn');
+      const typeText = document.getElementById('typewriter-msg');
+      const cursor = document.getElementById('typewriter-cursor');
+      const postBlow = document.getElementById('post-blow-box');
+      const movieCake = document.getElementById('movie-cake');
+      const headingEl = document.getElementById('cake-heading-type');
+      const headingCursor = document.getElementById('cake-heading-cursor');
+
+      shadow.classList.remove('cover', 'vanish');
+      movieCake.style.display = 'none';
+      matchbox.style.opacity = '0';
+      heroStick.style.animation = 'none';
+      heroFlame.classList.remove('ignited');
+      document.querySelectorAll('.candle-flame').forEach(f => f.classList.remove('lit'));
+      document.querySelectorAll('.realistic-smoke-container').forEach(s => s.classList.remove('active'));
+      blowBtn.classList.remove('show');
+      blowBtn.style.display = 'inline-block';
+      typeText.textContent = '';
+      cursor.style.display = 'inline-block';
+      postBlow.style.display = 'none';
+      headingEl.textContent = '';
+      headingCursor.style.display = 'inline-block';
+
+      await typeWriterPromise('cake-heading-type', "Happy Birthday Suman!", 50);
+      headingCursor.style.display = 'none';
+
+      await sleep(1500);
+      shadow.classList.add('cover');
+      
+      setTimeout(() => { matchbox.style.opacity = '1'; }, 1300);
+
+      setTimeout(() => {
+        heroStick.style.animation = 'pullStrikeAndLight 3.8s ease forwards';
+        
+        setTimeout(() => {
+          triggerRealisticSparks();
+          heroFlame.classList.add('ignited');
+        }, 1050);
+
+        setTimeout(() => document.getElementById('flame-1').classList.add('lit'), 1800);
+        setTimeout(() => document.getElementById('flame-2').classList.add('lit'), 2350);
+        setTimeout(() => document.getElementById('flame-3').classList.add('lit'), 2900);
+        setTimeout(() => document.getElementById('flame-4').classList.add('lit'), 3450);
+
+        setTimeout(() => { matchbox.style.opacity = '0'; }, 3600);
+      }, 1800);
+
+      setTimeout(async () => {
+        await typeWriterPromise('typewriter-msg', "Make a wish and blow out the candles ✨", 55);
+        cursor.style.display = 'none';
+        blowBtn.classList.add('show');
+      }, 5800);
+    }
+
+    async function animateCakePipingText() {
+      const tspan = document.getElementById('cake-piping-text');
+      const fullText = "Happy 25 years!!";
+      tspan.textContent = "";
+      for (let i = 0; i < fullText.length; i++) {
+        tspan.textContent += fullText.charAt(i);
+        await sleep(75);
+      }
+    }
+
+    function blowOutCandles() {
+      document.querySelectorAll('.candle-flame').forEach(f => f.classList.remove('lit'));
+      document.querySelectorAll('.realistic-smoke-container').forEach(s => s.classList.add('active'));
+
+      setTimeout(async () => {
+        document.getElementById('rising-shadow').classList.add('vanish');
+        document.getElementById('movie-cake').style.display = 'block';
+        
+        await animateCakePipingText();
+        await sleep(300);
+
+        document.getElementById('post-blow-box').style.display = 'block';
+
+        const subtitleText = document.getElementById('post-blow-subtitle');
+        const subtitleCursor = document.getElementById('post-blow-subtitle-cursor');
+        const promptText = document.getElementById('post-blow-prompt');
+        const promptCursor = document.getElementById('post-blow-prompt-cursor');
+        const readyBtn = document.getElementById('ready-gifts-btn');
+
+        subtitleText.textContent = '';
+        promptText.textContent = '';
+        subtitleCursor.style.display = 'inline-block';
+        promptCursor.style.display = 'none';
+        readyBtn.style.opacity = '0';
+        readyBtn.style.pointerEvents = 'none';
+
+        await typeWriterPromise('post-blow-subtitle', "My cute si Nautanki", 45);
+        subtitleCursor.style.display = 'none';
+        await sleep(300);
+
+        promptCursor.style.display = 'inline-block';
+        await typeWriterPromise('post-blow-prompt', "So... Are you ready for your gifts???", 45);
+        promptCursor.style.display = 'none';
+
+        await sleep(300);
+        readyBtn.style.opacity = '1';
+        readyBtn.style.pointerEvents = 'auto';
+
+        confetti({ particleCount: 90, angle: 60, spread: 60, origin: { x: 0, y: 0 } });
+        confetti({ particleCount: 90, angle: 120, spread: 60, origin: { x: 1, y: 0 } });
+        setTimeout(() => {
+          confetti({ particleCount: 130, spread: 90, origin: { y: 0.35 } });
+        }, 200);
+      }, 450);
+    }
+
+    /* 5. ENVELOPE & SURPRISE HUBS */
+    async function runHubStory() {
+      const header = document.getElementById('hub-header');
+      const cursor = document.getElementById('hub-header-cursor');
+      header.textContent = '';
+      cursor.style.display = 'none';
+
+      await sleep(300);
+      cursor.style.display = 'inline-block';
+      await typeWriterPromise('hub-header', "Tap to open the envelope ✨", 45);
+      cursor.style.display = 'none';
+    }
+
+    async function openEnvelopeHub() {
+      const envelope = document.getElementById('surprise-envelope');
+      const header = document.getElementById('hub-header');
+      const cursor = document.getElementById('hub-header-cursor');
+      const footer = document.getElementById('gifts-footer');
+      
+      if (!envelope.classList.contains('opened')) {
+        envelope.classList.add('opened');
+        confetti({ particleCount: 70, spread: 65, origin: { y: 0.5 } });
+
+        await sleep(500);
+        cursor.style.display = 'inline-block';
+        await eraseWriterPromise('hub-header', 25);
+
+        await typeWriterPromise('hub-header', "Open one gift at a time, All are yours 😜", 40);
+        cursor.style.display = 'none';
+
+        await sleep(400);
+        footer.classList.add('show');
+      }
+    }
+
+    async function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+
+      if (modalId === 'modal-flowers') {
+        spawnPetals();
+        const topText = document.getElementById('flowers-top-text');
+        const topCursor = document.getElementById('flowers-top-cursor');
+        const botText = document.getElementById('flowers-bot-text');
+        const botCursor = document.getElementById('flowers-bot-cursor');
+        const p1 = document.getElementById('polaroid-1');
+        const p2 = document.getElementById('polaroid-2');
+
+        topText.textContent = '';
+        botText.textContent = '';
+        topCursor.style.display = 'inline-block';
+        botCursor.style.display = 'none';
+        p1.classList.remove('float-in');
+        p2.classList.remove('float-in');
+
+        await typeWriterPromise('flowers-top-text', "I know how much you love flowers, so here are some for you with my cute face in there as well 🫠💖", 40);
+        topCursor.style.display = 'none';
+
+        p1.classList.add('float-in');
+        await sleep(200);
+        p2.classList.add('float-in');
+
+        await sleep(500);
+        botCursor.style.display = 'inline-block';
+        await typeWriterPromise('flowers-bot-text', "I know your favorite flowers are jasmine, but ab kaam chalao 🌸🤍", 40);
+        botCursor.style.display = 'none';
+
+      } else if (modalId === 'modal-twinning') {
+        currentTwinIndex = 0;
+        showTwinSlide(0);
+
+        const topText = document.getElementById('twin-top-text');
+        const topCursor = document.getElementById('twin-top-cursor');
+        const botText = document.getElementById('twin-bot-text');
+        const botCursor = document.getElementById('twin-bot-cursor');
+        const prevBtn = document.getElementById('twin-prev-btn');
+        const nextBtn = document.getElementById('twin-next-btn');
+
+        topText.textContent = '';
+        botText.textContent = '';
+        topCursor.style.display = 'inline-block';
+        botCursor.style.display = 'none';
+        prevBtn.style.opacity = '0';
+        prevBtn.style.pointerEvents = 'none';
+        nextBtn.style.opacity = '0';
+        nextBtn.style.pointerEvents = 'none';
+
+        await typeWriterPromise('twin-top-text', "And iho gift asan ju uhe pictures jehn me asan twinning karan ji koshish kayi 😂👯‍♀️✨", 40);
+        topCursor.style.display = 'none';
+
+        await sleep(300);
+        botCursor.style.display = 'inline-block';
+        await typeWriterPromise('twin-bot-text', "choti, jhumka, dresses, hairstyle, in kha ilawa bh hundyu ghanyu, but these cute moments shayad wari kadi kehn sa share na kandam 😭🤧🤍", 35);
+        botCursor.style.display = 'none';
+
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+
+      } else if (modalId === 'modal-cute') {
+        currentCuteIndex = 0;
+        showCuteSlide(0);
+
+        const topText = document.getElementById('cute-top-text');
+        const topCursor = document.getElementById('cute-top-cursor');
+        const botText = document.getElementById('cute-bot-text');
+        const botCursor = document.getElementById('cute-bot-cursor');
+        const prevBtn = document.getElementById('cute-prev-btn');
+        const nextBtn = document.getElementById('cute-next-btn');
+
+        topText.textContent = '';
+        botText.textContent = '';
+        topCursor.style.display = 'inline-block';
+        botCursor.style.display = 'none';
+        prevBtn.style.opacity = '0';
+        prevBtn.style.pointerEvents = 'none';
+        nextBtn.style.opacity = '0';
+        nextBtn.style.pointerEvents = 'none';
+
+        await typeWriterPromise('cute-top-text', "Ihe kujh pictures jeke shayad puranyu aahin but muhinje dil je kaafi kareeb inn 🥹🫶💖", 40);
+        topCursor.style.display = 'none';
+
+        await sleep(300);
+        botCursor.style.display = 'inline-block';
+        await typeWriterPromise('cute-bot-text', "Either they are so cute, or hold a cute moment 🥹🧸💕✨", 35);
+        botCursor.style.display = 'none';
+
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+
+      } else if (modalId === 'modal-letter') {
+        const titleText = document.getElementById('letter-title-text');
+        const titleCursor = document.getElementById('letter-title-cursor');
+        titleText.textContent = '';
+        titleCursor.style.display = 'inline-block';
+
+        for (let k = 1; k <= 11; k++) {
+          document.getElementById(`l-p${k}`).classList.remove('show');
+        }
+
+        await typeWriterPromise('letter-title-text', "Muhinji Pyari Suman,", 45);
+        titleCursor.style.display = 'none';
+
+        for (let k = 1; k <= 11; k++) {
+          await sleep(240);
+          document.getElementById(`l-p${k}`).classList.add('show');
+        }
+      }
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    function spawnPetals() {
+      const container = document.getElementById('petal-container');
+      container.innerHTML = '';
+      for (let i = 0; i < 16; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.width = (Math.random() * 10 + 10) + 'px';
+        petal.style.height = (Math.random() * 12 + 12) + 'px';
+        petal.style.animationDelay = (Math.random() * 2) + 's';
+        petal.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        container.appendChild(petal);
+      }
+    }
+
+    /* CAROUSEL CONTROLS */
+    let currentTwinIndex = 0;
+    const totalTwinSlides = 6;
+    function showTwinSlide(index) {
+      for (let i = 0; i < totalTwinSlides; i++) {
+        const slide = document.getElementById(`twin-slide-${i}`);
+        if (slide) slide.classList.remove('active');
+      }
+      const activeSlide = document.getElementById(`twin-slide-${index}`);
+      if (activeSlide) activeSlide.classList.add('active');
+    }
+    function nextTwinSlide() {
+      currentTwinIndex = (currentTwinIndex + 1) % totalTwinSlides;
+      showTwinSlide(currentTwinIndex);
+    }
+    function prevTwinSlide() {
+      currentTwinIndex = (currentTwinIndex - 1 + totalTwinSlides) % totalTwinSlides;
+      showTwinSlide(currentTwinIndex);
+    }
+
+    let currentCuteIndex = 0;
+    const totalCuteSlides = 10;
+    function showCuteSlide(index) {
+      for (let i = 0; i < totalCuteSlides; i++) {
+        const slide = document.getElementById(`cute-slide-${i}`);
+        if (slide) slide.classList.remove('active');
+      }
+      const activeSlide = document.getElementById(`cute-slide-${index}`);
+      if (activeSlide) activeSlide.classList.add('active');
+    }
+    function nextCuteSlide() {
+      currentCuteIndex = (currentCuteIndex + 1) % totalCuteSlides;
+      showCuteSlide(currentCuteIndex);
+    }
+    function prevCuteSlide() {
+      currentCuteIndex = (currentCuteIndex - 1 + totalCuteSlides) % totalCuteSlides;
+      showCuteSlide(currentCuteIndex);
+    }
+  </script>
+</body>
+</html>
